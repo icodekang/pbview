@@ -1,0 +1,45 @@
+syntax = "proto2";
+
+/*
+** 文件存储插件Dump数据
+*/
+message FileDump
+{
+    required FileConfig   fileConfig  = 1;    // 数据源配置
+    required FileMetaData fileMetaData    = 2;    // 码流信息
+}
+
+/**
+ * 配置参数
+ **/
+message FileConfig
+{
+    required string storageDir             = 1;    // 码流索引
+    required string videoFormat            = 2;    // 超时重连时间
+    required int32  videoMaxSize           = 3;    // 循环次数
+    required int32  videoDuration          = 4;    // 图片分析结束标识
+    required int32  beforeDuration         = 5;    // 取流url
+    required int32  afterDuration          = 6;    // rtsp取流协议
+    required string prefixName             = 7;    // uuid唯一标识
+    required string record                 = 8;    // 是否开启手动录像
+    required string backgroundImageCapture = 9;    // 是否开启手动抓图
+    required string pipelineName           = 10;   // pipeline名称
+}
+
+/*
+** MetaData数据
+*/
+message FileMetaData
+{
+    required int32   index       = 1;           // 码流索引
+    required uint32  mediaType   = 2;           // 媒体类型
+    required uint32  frameType   = 3;           // 帧类型
+    required uint32  timeStamp   = 4;           // 时间戳
+    required uint32  alarm       = 5;           // 透传数据
+    required bytes   frameData   = 6;           // 帧数据
+    optional bytes   backgroundImageData = 7;   // 背景图片数据
+    optional bytes   alarmImageData = 8;        // 报警图片数据
+    optional uint32  eventId        = 9;        // 事件ID
+    optional uint32  analyzeType    = 10;       // 分析类型
+    optional string  record         = 11;       // 是否需要录像
+}

@@ -1,0 +1,34 @@
+syntax = "proto2";
+package HikStreamPluginsDump;
+
+/**
+ * Datasink插件Dump数据
+ **/
+message DatasinkDump
+{
+    required DatasinkConfig   datasinkConfig   = 1;  // 数据源配置
+    required DatasinkMetaData datasinkMetaData = 2;  // 元信息
+}
+
+/**
+ * 配置参数
+ **/
+message DatasinkConfig
+{
+    required string pipelineName = 1;        // pipeline名称
+}
+
+/*
+** MetaData数据
+*/
+message DatasinkMetaData
+{
+    required int32   index     = 1;           // 码流索引
+    required uint32  mediaType = 2;           // 媒体类型
+    required uint32  frameType = 3;           // 帧类型
+    required uint32  timeStamp = 4;           // 时间戳
+    required uint32  alarm     = 5;           // 透传数据
+    optional bytes   frameData = 6;           // 帧数据
+    optional bytes   backgroundImageData = 7; // 背景图
+    optional bytes   alarmImageData      = 8; // 报警图
+}

@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+/*
+** 目标轨迹
+*/
+message DatasourceDump
+{
+    required DatasourceStreamConfig datasourceStreamConfig = 1;    // 数据源配置
+    required DatasourceStreamInfo   datasourceStreamInfo   = 2;    // 码流信息
+}
+
+/**
+ * 配置参数
+ **/
+message DatasourceStreamConfig
+{
+    required int32 index            = 1;    // 码流索引
+    required int32 timeoutReconnect = 2;    // 超时重连时间
+    required int32 streamLoop       = 3;    // 循环次数
+    required int32 imageFlag        = 4;    // 图片分析结束标识
+    required string url             = 5;    // 取流url
+    required string rtspTransport   = 6;    // rtsp取流协议
+    required string uuid            = 7;    // uuid唯一标识
+    required string pipelineName    = 8;    // pipeline名称
+}
+
+/*
+** 码流信息
+*/
+message DatasourceStreamInfo
+{
+    required uint32  frameNo     = 1;    // 帧号
+    optional uint32  frameRate   = 2;    // 帧率
+    required int32   mediaType   = 3;    // 媒体类型
+    optional int32   frameType   = 4;    // 帧类型
+    required uint64  timeStamp   = 5;    // 时间戳
+    optional bytes   description = 6;    // 透传数据
+    required bytes   frameData   = 7;    // 帧数据
+}

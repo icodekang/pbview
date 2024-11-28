@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+/**
+ * 文件存储插件Dump数据
+ **/
+message EventDump
+{
+    required EventConfig    eventConfig = 1;  // 数据源配置
+    required EventMetaData  eventMetaData    = 2;  // 元信息
+}
+
+/**
+ * 配置参数
+ **/
+message EventConfig
+{
+	optional string	extendLibPath     = 2;    // 扩展库路径
+	optional string	extendLibDesc     = 3;    // 扩展库描述，用于获取三方库的函数指针
+	optional string	customRule        = 4;    // 用户透传参数
+    required string pipelineName      = 5;    // pipeline名称
+}
+
+/*
+** MetaData数据
+*/
+message EventMetaData
+{
+    required int32   index     = 1;           // 码流索引
+    required uint32  mediaType = 2;           // 媒体类型
+    required uint32  frameType = 3;           // 帧类型
+    required uint32  timeStamp = 4;           // 时间戳
+    required uint32  alarm     = 5;           // 透传数据
+    required uint32  uploadAlarmCenter = 6;   // 是否上传报警中心
+    required bytes   alarmImagePath = 7;      // 图片路径
+    optional string  alarmJsonData  = 8;      // 组装报警数据
+}

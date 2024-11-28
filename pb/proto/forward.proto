@@ -1,0 +1,49 @@
+syntax = "proto2";
+
+/**
+ * 文件存储插件Dump数据
+ **/
+message ForwardDump
+{
+    required ForwardConfig       forwardConfig         = 1;    // 数据源配置
+    required ForwardStreamConfig forwardStreamConfig   = 2;    // 码流配置信息
+    required ForwardMetaData     forwardMetaData       = 3;    // 元信息
+}
+
+/**
+ * 配置参数
+ **/
+message ForwardConfig
+{
+    required int32  httpPort      = 1;    // http端口
+    required int32  rtspPort      = 2;    // rtsp端口
+    required int32  rtmpPort      = 3;    // rtmp端口
+    required string pipelineName  = 4;    // pipeline名称
+}
+
+/**
+ * 码流配置信息
+ **/
+message ForwardStreamConfig
+{
+    required int32   httpEnable  = 1;          // http使能
+    required int32   rtspEnable  = 2;          // rtsp使能
+    required string  status      = 3;          // 状态
+    required string  uri         = 4;          // 取流uri
+    required string  user        = 5;          // 用户名
+    required string  pwd         = 6;          // 密码
+}
+
+/**
+ * MetaData数据
+ **/
+message ForwardMetaData
+{
+    required int32   index       = 1;           // 码流索引
+    required uint32  mediaType   = 2;           // 媒体类型
+    required uint32  frameType   = 3;           // 帧类型
+    required uint32  timeStamp   = 4;           // 时间戳
+    required uint32  errorCode   = 5;           // 错误码
+    optional bytes   frameData   = 6;           // 帧数据
+    optional bytes   backgroundImageData = 7;   // 背景图片数据
+}
